@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleKeyEvent" prefHeight="770.0" prefWidth="630.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.Controller">
+  <children>
+    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="630.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleOpenFileMenuItem" text="Open ..." fx:id="openFileMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleReloadFileMenuItem" text="Reload" fx:id="reloadFileMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleSaveLogMenuItem" text="Save log" fx:id="saveLogMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#handleQuitProgramMenuItem" text="Quit" fx:id="quitProgramMenuItem">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleShortcutsMenuItem" text="Shortcuts" fx:id="shortcutsMenuItem" />
+            <MenuItem mnemonicParsing="false" onAction="#handleAboutMenuItem" text="About" fx:id="aboutMenuItem" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <TitledPane animated="false" collapsible="false" layoutX="0.0" layoutY="488.0" prefHeight="256.0" prefWidth="631.0" text="Console">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="217.0" prefWidth="627.0">
+          <children>
+            <TextArea fx:id="consoleTextArea" editable="false" layoutX="0.0" layoutY="0.0" prefHeight="229.0" prefWidth="627.0" wrapText="true" />
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+    <ToolBar layoutX="0.0" layoutY="744.0" prefWidth="630.0">
+      <items>
+        <Label fx:id="statusLabel" prefWidth="95.0" text="Status: ready" />
+        <Separator prefWidth="284.0" visible="false" />
+        <ProgressBar fx:id="progressBar" prefWidth="217.0" progress="0.0" />
+      </items>
+    </ToolBar>
+    <TitledPane id="controlePane" fx:id="controlPane" animated="false" collapsible="false" layoutX="0.0" layoutY="24.0" prefHeight="464.0" prefWidth="630.0" text="">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="626.0">
+          <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Goal (initial)" />
+            <TextField fx:id="initialGoalTextField" layoutX="14.0" layoutY="30.0" onKeyReleased="#handleGoalTextInput" prefWidth="468.0" />
+            <Label layoutX="14.0" layoutY="72.0" text="Goal (current)" />
+            <TextField fx:id="currentGoalTextField" editable="false" layoutX="14.0" layoutY="88.0" prefWidth="468.0" />
+            <Button fx:id="singleStepButton" layoutX="489.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleSingleStepButton" prefWidth="58.0" text="1 step" />
+            <Button fx:id="multiStepButton" layoutX="554.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleMultiStepButton" text="n steps" />
+            <Button fx:id="startButton" layoutX="489.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleStartButton" prefWidth="123.0" text="Start" />
+            <ListView fx:id="literalListView" layoutX="14.0" layoutY="164.0" onMousePressed="#handleLiteralListView" prefHeight="103.0" prefWidth="412.0" />
+            <Label layoutX="14.0" layoutY="148.0" text="Applicable literals" />
+            <ListView fx:id="ruleListView" layoutX="14.0" layoutY="303.0" onMousePressed="#handleRuleListView" prefHeight="103.0" prefWidth="412.0" />
+            <Label layoutX="14.0" layoutY="287.0" text="Applicable rules" />
+            <ComboBox fx:id="literalStrategyBox" layoutX="437.0" layoutY="165.0" onAction="#handleLiteralStrategyBox" prefHeight="21.0" prefWidth="175.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+            <ComboBox fx:id="ruleStrategyBox" layoutX="437.0" layoutY="303.0" onAction="#handleRuleStrategyBox" prefHeight="21.0" prefWidth="175.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+            <Label layoutX="437.0" layoutY="148.0" text="Selection strategy" />
+            <Label layoutX="437.0" layoutY="284.0" text="Selection strategy" />
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+  </children>
+</AnchorPane>
